@@ -1,0 +1,36 @@
+server:
+  port: 8040
+  
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/authdb
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        register: true
+        health-check-path: /actuator/health
+        prefer-ip-address: true
+
+jwt:
+  secret: secretkey1234567890  
+  expiration: 3600000         
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
